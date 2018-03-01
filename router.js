@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const middleware = require('./middleware');
+const Book = require('./book');
 
 let check = [
     middleware.checkAuthorLength, 
@@ -13,14 +14,9 @@ router.get('/', function(request, response) {
     response.send('hello...');
 });
 
-router.get('/books', function(request, response) {
-    // to do
-});
+router.get('/books', middleware.listAll);
 
-router.get('/book/:id', function(request, response, next) {
-    // to do
-});
-
+router.get('/book/:id', middleware.search);
 
 router.post('/book',check ,middleware.addBook, middleware.create);
 
